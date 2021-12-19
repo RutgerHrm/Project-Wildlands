@@ -1,0 +1,60 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Forms {% endblock title %}
+
+<!-- Specific CSS goes HERE  -->
+{% block stylesheets %}
+
+<style>
+.jemoeder p {
+    text-align: left;
+    font-size: 80px;
+}
+
+
+
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<body>
+
+{% for posts in posts %}
+<p> {{gebied.naam}}  </p>
+<canvas id="myChart" style="width:100%;max-width:50%"></canvas>
+
+<script>
+var xValues = ['Serenga', "Jungola", "Animazia", "Nortica"];
+var yValues = [0, {{jungola.ontsnappingen}}, {{animazia.ontsnappingen}}, {{nortica.ontsnappingen}}, 4, 8];
+var barColors = ["red", "brown", "green","blue","lightblue"];
+
+{% endfor %}
+
+new Chart("myChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Aantal Ontsnappingsmeldingen per gebied"
+    }
+  }
+});
+</script>
+
+</body>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}

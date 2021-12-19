@@ -1,0 +1,44 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} test {% endblock title %}
+
+<!-- Specific CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                    {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </main>
+
+    <nav class="nav">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="btn btn-secondary mt-1 mb-1" href="/index">Back</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="card">
+        <div class="card-header">
+            Gebruikersgegevens
+        </div>
+        <div class="card-body">
+            <h2 class="card-title">{{ user.username }}</h2>
+            <p class="card-text">ID: {{ user.id }}</p>
+            <p class="card-text">Email: {{ user.email }}</p>
+            <p class="card-text">Password: {{ user.password }}</p>
+        </div>
+    </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

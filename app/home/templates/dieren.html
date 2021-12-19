@@ -1,0 +1,68 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dieren {% endblock title %}
+
+<!-- Specific CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                    {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </main>
+
+    <div class="container-fluid">
+        <h4 class="c-grey-900 mT-10 mB-30">Dierengegevens</h4>
+        <div class="row">
+        <div class="col-md-12">
+            <div class="bgc-white bd bdrs-3 p-20 mB-20">
+            <a class="btn btn-success mb-2" href="{{ url_for('dieren_blueprint.dierencreate') }}">Dieren Toevoegen</a>
+            <table id="dataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                    <th>Naam</th>
+                    <th>Soort</th>
+                    <th>Leeftijd</th>
+                    <th>Kleur</th>
+                    <th>Geslacht</th>
+                    <th>Leeftijd</th>
+                    <th>Geboortedatum</th>
+                    <th>Gebied</th>
+                    <th>Bekijken</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                {% for dier in posts %}
+                    <tr>
+                    <td>{{ dier.voornaam }} {{ dier.achternaam }}</td>
+                    <td>{{ dier.soort }}</td>
+                    <td>{{ dier.leeftijd }}</td>
+                    <td>{{ dier.kleur }}</td>
+                    <td>{{ dier.geslacht }}</td>
+                    <td>{{ dier.leeftijd }}</td>
+                    <td>{{ dier.geboortedatum }}</td>
+                    <td>{{ dier.gebied.naam }}</td>
+                    <td> <a class="btn btn-secondary mt-1 mb-1" href="{{ url_for('dieren_blueprint.dier', dier_id=dier.id) }}">View</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

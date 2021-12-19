@@ -1,0 +1,53 @@
+
+{% extends "layouts/base-fullscreen.html" %}
+
+{% block title %} Login {% endblock title %}
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="d-n@sm- peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv" style='background-image: url("/static/assets/static/images/plattegrond.jpg")'>
+        <div class="pos-a centerXY">
+        </div>
+      </div>
+      <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r" style="min-width: 320px;">
+
+        <h3 class="fw-300 c-grey-900 mB-40">
+          <a target="_blank" rel="noopener noreferrer" 
+             href="https://appseed.us/admin-dashboards/flask-dashboard-adminator">Wildlands Dashboard</a> - Login
+        </h3>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <form method="post" action="">
+
+          {{ form.hidden_tag() }}
+
+          <div class="form-group">
+            <label class="text-normal text-dark">Gebruikersnaam</label>
+            {{ form.username(placeholder="Gebruikersnaam", class="form-control") }}
+          </div>
+
+          <div class="form-group">
+            <label class="text-normal text-dark">Wachtwoord</label>
+            {{ form.password(placeholder="Wachtwoord", class="form-control", type="password") }}
+          </div>
+
+          <div class="form-group">
+            <div class="peers ai-c jc-sb fxw-nw">
+              <div class="peer">
+                <button type="submit" name="login" class="btn btn-primary">Inloggen</button>
+                
+                &nbsp; &nbsp; 
+                <a href="{{ url_for('base_blueprint.register') }}" class="text-black text-small">Register</a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>  
+
+{% endblock content %}
